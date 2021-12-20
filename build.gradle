@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '2.0.4'
+}
+
+group = 'cn.diyiliu'
+version = '0.1-SNAPSHOT'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+ext {
+    flinkVersion = '1.13.5'
+    scalaBinaryVersion = '2.11'
+    slf4jVersion = '1.7.25'
+}
+
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "https://repository.apache.org/content/repositories/snapshots/" }
+}
+
+dependencies {
+    compileOnly "org.apache.flink:flink-java:${flinkVersion}"
+    compileOnly "org.apache.flink:flink-streaming-java_${scalaBinaryVersion}:${flinkVersion}"
+    implementation "org.slf4j:slf4j-log4j12:${slf4jVersion}"
+
+    implementation("org.apache.flink:flink-clients_${scalaBinaryVersion}:${flinkVersion}") {
+        exclude(group: "org.slf4j", module: "slf4j-api")
+    }
+
+    implementation("org.apache.flink:flink-connector-kafka_${scalaBinaryVersion}:${flinkVersion}") {
+        exclude(group: "org.slf4j", module: "slf4j-api")
+    }
+
+    testImplementation "junit:junit:4.13"
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'cn.diyiliu.flink.Main'
+        )
+    }
+}
