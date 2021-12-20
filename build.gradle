@@ -11,7 +11,7 @@ tasks.withType(JavaCompile) {
 }
 
 ext {
-    flinkVersion = '1.13.5'
+    flinkVersion = '1.14.2'
     scalaBinaryVersion = '2.11'
     slf4jVersion = '1.7.25'
 }

@@ -18,7 +18,7 @@ public class Main {
 
     static String TOPIC_IN = "fleet-rawdata_up";
     static String TOPIC_OUT = "fleet-rawdata_test";
-    static String BOOTSTRAP_SERVER = "192.168.2.129:9092";
+    static String BOOTSTRAP_SERVER = "192.168.1.171:9092";
 
     public static void main(String[] args) throws Exception {
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
